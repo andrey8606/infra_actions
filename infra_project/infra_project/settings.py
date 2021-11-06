@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,7 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'infra_app.apps.InfraAppConfig',
+    'infra_project',
+    'infra_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'infra_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
